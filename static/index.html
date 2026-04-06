@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Semantic Document Search Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .score {
+            color: green;
+            font-weight: bold;
+        }
+
+        .loading {
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .no-results {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Custom Semantic Document Search Engine</h1>
+
+    <div class="search-box">
+        <input type="text" id="query" placeholder="Search documents...">
+        <button onclick="search()">Search</button>
+    </div>
+
+    <div id="status"></div>
+    <div id="results"></div>
+</div>
+
+<script>
+async function search() {
+    const query = document.getElementById("query").value.trim();
+    const resultsDiv = document.getElementById("results");
+    const statusDiv = document.getElementById("status");
+
+    if (!query) {
+        statusDiv.innerHTML = "<p class='no-results'>Please enter a query.</p>";
+        return;
+    }
+
+    resultsDiv.innerHTML = "";
+    statusDiv.innerHTML = "<p class='loading'>Searching...</p>";
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/search?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        statusDiv.innerHTML = "";
+
+        if (data.results.length === 0) {
+            statusDiv.innerHTML = "<p class='no-results'>No results found.</p>";
+            return;
+        }
+
+        data.results.forEach(r => {
+            const div = document.createElement("div");
+            div.className = "result";
+
+            div.innerHTML = `
+                <h3>${r.document}</h3>
+                <p class="score">Score: ${r.score}</p>
+                <p>${r.snippet}</p>
+            `;
+
+            resultsDiv.appendChild(div);
+        });
+
+    } catch (error) {
+        statusDiv.innerHTML = "<p class='no-results'>Error fetching results.</p>";
+    }
+}
+</script>
+
+</body>
+</html>
