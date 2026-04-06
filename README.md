@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Custom Semantic Document Search Engine
 
 ## Overview
@@ -216,3 +217,7 @@ The system transforms raw text into numerical vectors and uses mathematical simi
 
 Author
 Poojasri@2026
+=======
+# Custom-Document-Search-Engine
+Custom semantic document search engine using manual TF-IDF and cosine similarity with a FastAPI backend and interactive UI.
+>>>>>>> e2b56742bac9d5547c7f27c869a52af3ba4702d6
