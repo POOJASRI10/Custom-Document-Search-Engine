@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Custom Semantic Document Search Engine
 
 ## Overview
@@ -83,9 +82,8 @@ http://127.0.0.1:8000/search?q=artificial intelligence in finance
     }
   ]
 }
-
-
-Methologies
+```
+## Methologies
 
 1. Text Preprocessing
 
@@ -120,13 +118,13 @@ Constraints Followed
 - Stopword removal
 
 
-Future Improvements
+## Future Improvements
 
 - Synonym handling for better semantic matching
 - Performance optimization
 - Advanced UI enhancements
 
-Working
+## Model Working
 
 The search engine follows a multi-stage pipeline to process documents and retrieve the most relevant results for a given query.
 
@@ -157,23 +155,16 @@ This ensures consistent comparison between documents and queries.
 For each document:
 
 - Count how many times each word appears
-- Normalize by total number of words in the document
+- Normalize by the total number of words in the document
 
 Formula: TF = (count of word in document) / (total words in document)
 
 5. IDF (Inverse Document Frequency) Computation
 
 - Measures how important a word is across all documents
-- Words that appear in many documents get lower weight
-
-Formula: 5. IDF (Inverse Document Frequency) Computation
-
-- Measures how important a word is across all documents
-- Words that appear in many documents get lower weight
+- Words that appear in many documents get a lower weight
 
 Formula: IDF = log((N + 1) / (doc_count + 1)) + 1
-
-
 Where:
 - N = total number of documents
 - doc_count = number of documents containing the word
@@ -182,12 +173,11 @@ Where:
 
 - Each document is converted into a numerical vector
 - Each value represents the importance of a word in that document
-  TF-IDF = TF × IDF
+Formula: TF-IDF = TF × IDF
 
 7. Query Processing
 
 When a user enters a query:
-
 - The query is preprocessed using the same steps as documents
 - It is converted into a TF-IDF vector using the same vocabulary
 
@@ -195,7 +185,7 @@ When a user enters a query:
 
 - The query vector is compared with all document vectors
 - Cosine similarity is used to measure relevance
-  cos(θ) = (A · B) / (|A| |B|)
+Formula: cos(θ) = (A · B) / (|A| |B|)
 - Higher value → more similar document
 
 9. Ranking and Retrieval
@@ -206,18 +196,14 @@ When a user enters a query:
 10. Result Generation
 
 For each selected document, the system returns:
-
 - Document name
 - Similarity score
 - A short snippet (first 200 characters)
 
-Summary
+## Summary
 
 The system transforms raw text into numerical vectors and uses mathematical similarity to retrieve relevant documents. It relies entirely on classical information retrieval techniques implemented from scratch without external NLP libraries.
 
 Author
 Poojasri@2026
-=======
-# Custom-Document-Search-Engine
-Custom semantic document search engine using manual TF-IDF and cosine similarity with a FastAPI backend and interactive UI.
->>>>>>> e2b56742bac9d5547c7f27c869a52af3ba4702d6
+poojasri.connect@gmail.com
