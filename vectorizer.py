@@ -39,8 +39,6 @@ def compute_idf(processed_docs, vocab):
         for tokens in processed_docs.values():
             if word in tokens:
                 doc_count += 1
-
-        # avoid division by zero
         idf[word] = math.log((N + 1) / (doc_count + 1)) + 1
 
     return idf
