@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Custom Semantic Document Search Engine
 
 ## Overview
@@ -18,6 +17,7 @@ No external NLP libraries or pretrained models are used. All logic is implemente
 
 ## Project Structure 
 
+```
 Spritle/
 │
 ├── api.py        # FastAPI backend
@@ -32,12 +32,12 @@ Spritle/
 │ └── index.html  # Simple Frontend UI
 │
 └── README.md     #contains the project details
-
+```
 
 ## Setup Instructions
 
 1. Clone or download the project
-git clone <your-repo-link>
+git clone (https://github.com/POOJASRI10/Custom-Document-Search-Engine)
 cd Spritle
 
 2. Install dependencies

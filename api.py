@@ -9,6 +9,15 @@ from vectorizer import (
 )
 
 app = FastAPI()
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 documents = load_documents("documents")
 processed_docs = process_documents(documents)
 
@@ -18,10 +27,14 @@ idf = compute_idf(processed_docs, vocab)
 tfidf_vectors = compute_tfidf(tf_vectors, vocab, idf)
 
 from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 @app.get("/")
 def home():
     return FileResponse("static/index.html")
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 def compute_query_tfidf(query):
     tokens = preprocess(query)
