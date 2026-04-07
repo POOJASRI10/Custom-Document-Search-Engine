@@ -17,27 +17,22 @@ No external NLP libraries or pretrained models are used. All logic is implemente
 
 ## Project Structure 
 
-```
 Spritle/
-│
-├── api.py        # FastAPI backend
-├── loader.py     # Load documents
-├── preprocess.py # Text preprocessing
-├── vectorizer.py # TF-IDF logic
-├── main.py       
-│
-├── documents/    # Input text files (Given 50 documents)
-│
-├── static/
-│ └── index.html  # Simple Frontend UI
-│
-└── README.md     #contains the project details
-```
+
+- api.py             
+- loader.py     
+- preprocess.py 
+- vectorizer.py 
+- main.py  
+- documents/    
+- static/
+  - index.html  
+- README.md    
 
 ## Setup Instructions
 
 1. Clone or download the project
-git clone (https://github.com/POOJASRI10/Custom-Document-Search-Engine)
+git clone <your-repo-link>
 cd Spritle
 
 2. Install dependencies
@@ -49,17 +44,15 @@ uvicorn api:app --reload
 4. Access the application
 UI: http://127.0.0.1:8000
 
-API Docs (Swagger): http://127.0.0.1:8000/docs
+   API Docs (Swagger): http://127.0.0.1:8000/docs
+   
+   API Usage
+   
+   End
+   
+   GET /search?q=<query>
 
-API Usage
-End
-
-GET /search?q=<query>
-
- Sample API Call
-
-http://127.0.0.1:8000/search?q=artificial intelligence in finance
-
+   Sample API Call: http://127.0.0.1:8000/search?q=artificial intelligence in finance
 
 ## Example Response
 
@@ -83,9 +76,8 @@ http://127.0.0.1:8000/search?q=artificial intelligence in finance
     }
   ]
 }
-
-
-Methologies
+```
+## Methologies
 
 1. Text Preprocessing
 
@@ -95,20 +87,20 @@ Methologies
 
 2. TF-IDF Vectorization (Manual)
 
+    Formula: TF-IDF: TF-IDF = TF × IDF
 - Term Frequency (TF):
-TF = (word count in document) / (total words in document)
+  TF = (word count in document) / (total words in document)
 
 - Inverse Document Frequency (IDF):
-IDF = log((N + 1) / (doc_count + 1)) + 1
-
-TF-IDF: TF-IDF = TF × IDF
+  IDF = log((N + 1) / (doc_count + 1)) + 1
 
 3. Similarity Computation
 
-Cosine similarity is used to measure similarity between query and document vectors:
-cos(θ) = (A · B) / (|A| |B|)
+     Cosine similarity is used to measure similarity between query and document vectors:
+  
+      cos(θ) = (A · B) / (|A| |B|)
 
-Constraints Followed
+      Constraints Followed
 
 - No external NLP libraries used (e.g., sklearn, spacy, gensim)
 - No pretrained embeddings or APIs
@@ -120,13 +112,13 @@ Constraints Followed
 - Stopword removal
 
 
-Future Improvements
+## Future Improvements
 
 - Synonym handling for better semantic matching
 - Performance optimization
 - Advanced UI enhancements
 
-Working
+## Model Working
 
 The search engine follows a multi-stage pipeline to process documents and retrieve the most relevant results for a given query.
 
@@ -138,13 +130,13 @@ The search engine follows a multi-stage pipeline to process documents and retrie
 
 2. Text Preprocessing
 
-Each document undergoes preprocessing to normalize the text:
+  Each document undergoes preprocessing to normalize the text:
 
 - Convert text to lowercase
 - Remove punctuation and special characters
 - Tokenize text into individual words
 
-This ensures consistent comparison between documents and queries.
+  This ensures consistent comparison between documents and queries.
 
 3. Vocabulary Construction
 
@@ -154,27 +146,20 @@ This ensures consistent comparison between documents and queries.
 
 4. TF (Term Frequency) Computation
 
-For each document:
+     For each document:
 
 - Count how many times each word appears
-- Normalize by total number of words in the document
+- Normalize by the total number of words in the document
 
-Formula: TF = (count of word in document) / (total words in document)
+   Formula: TF = (count of word in document) / (total words in document)
 
 5. IDF (Inverse Document Frequency) Computation
 
 - Measures how important a word is across all documents
-- Words that appear in many documents get lower weight
+- Words that appear in many documents get a lower weight
 
-Formula: 5. IDF (Inverse Document Frequency) Computation
-
-- Measures how important a word is across all documents
-- Words that appear in many documents get lower weight
-
-Formula: IDF = log((N + 1) / (doc_count + 1)) + 1
-
-
-Where:
+  Formula: IDF = log((N + 1) / (doc_count + 1)) + 1
+  Where:
 - N = total number of documents
 - doc_count = number of documents containing the word
 
@@ -182,12 +167,12 @@ Where:
 
 - Each document is converted into a numerical vector
 - Each value represents the importance of a word in that document
-  TF-IDF = TF × IDF
+  Formula: TF-IDF = TF × IDF
 
 7. Query Processing
 
-When a user enters a query:
-
+      When a user enters a query:
+   
 - The query is preprocessed using the same steps as documents
 - It is converted into a TF-IDF vector using the same vocabulary
 
@@ -195,7 +180,7 @@ When a user enters a query:
 
 - The query vector is compared with all document vectors
 - Cosine similarity is used to measure relevance
-  cos(θ) = (A · B) / (|A| |B|)
+  Formula: cos(θ) = (A · B) / (|A| |B|)
 - Higher value → more similar document
 
 9. Ranking and Retrieval
@@ -205,19 +190,17 @@ When a user enters a query:
 
 10. Result Generation
 
-For each selected document, the system returns:
-
+     For each selected document, the system returns:
 - Document name
 - Similarity score
 - A short snippet (first 200 characters)
 
-Summary
+## Summary
 
 The system transforms raw text into numerical vectors and uses mathematical similarity to retrieve relevant documents. It relies entirely on classical information retrieval techniques implemented from scratch without external NLP libraries.
 
 Author
+
 Poojasri@2026
-=======
-# Custom-Document-Search-Engine
-Custom semantic document search engine using manual TF-IDF and cosine similarity with a FastAPI backend and interactive UI.
->>>>>>> e2b56742bac9d5547c7f27c869a52af3ba4702d6
+
+poojasri.connect@gmail.com
