@@ -1,5 +1,15 @@
 ## Custom Semantic Document Search Engine
 
+## Basic Understanding of the Problem Statement
+
+The goal of this project is to build a Custom Semantic Document Search Engine that retrieves the most relevant documents for a given user query, without relying on any external AI or NLP libraries.
+
+Unlike traditional keyword-based search systems, this project focuses on understanding the importance of words within documents using mathematical techniques. The system processes a collection of text files, converts them into numerical representations using TF-IDF (Term Frequency–Inverse Document Frequency), and compares them with the user query using cosine similarity.
+
+The key challenge lies in implementing all components manually, including text preprocessing, vectorization, and similarity computation, using only basic Python libraries. This ensures a deep understanding of how search engines work internally, without abstracting the logic through prebuilt tools.
+
+The final system accepts a query, evaluates its similarity against all documents in the dataset, and returns the Top 3 most relevant results, along with their scores and meaningful text snippets.
+
 ## Overview
 
 This project implements a **Custom Semantic Document Search Engine** using **manual TF-IDF vectorization and cosine similarity**.
